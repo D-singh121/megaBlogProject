@@ -54,29 +54,29 @@ export class AuthService {
 
     async getCurrentUser() {
         try {
-           return await this.account.get()
+            return await this.account.get();
 
         } catch (error) {
-            console.log("Appwrite service  ::  getCurrentUser ::  error ",error);
-            throw error;
+            console.log("Appwrite service  ::  getCurrentUser :: error ", error);
+            // throw error;
         }
         // eslint-disable-next-line no-unreachable
         return null;
     }
 
 
-    async logout(){
+    async logout() {
         try {
-            return await this.account.deleteSessions()
+            await this.account.deleteSessions()
         } catch (error) {
-            console.log("Appwrite service  ::  logout ::  error ",error);
+            console.log("Appwrite service  ::  logout ::  error ", error);
         }
     }
 
 
 }
 
-//****  ab hume iss class ko use karne ke liye objects banane padenge  */
+//****  ab hume iss class ko use karne ke liye objects banane padenge below line object */
 const authService = new AuthService();
 
 export default authService; //**** exporting the class */
