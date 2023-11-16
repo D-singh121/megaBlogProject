@@ -10,7 +10,7 @@ function Footer() {
                         <div className="flex h-full flex-col justify-between">
                             <div className="mb-4 inline-flex items-center">
                                 <Logo width="100px" />
-                            </div>
+                            </div> 
                             <div>
                                 <p className="text-sm text-gray-600">
                                     &copy; Copyright 2023. All Rights Reserved by DevUI.
