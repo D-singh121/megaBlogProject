@@ -42,7 +42,8 @@ export class DbService {
                 {
                     title,
                     content,
-                    featuredImage, status,
+                    featuredImage,
+                    status,
                 }
 
             )
@@ -140,5 +141,5 @@ export class DbService {
     }
 }
 
-const dbService = new DbService
-export default dbService
+const appwriteDbService = new DbService
+export default appwriteDbService

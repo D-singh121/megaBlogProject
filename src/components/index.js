@@ -9,6 +9,7 @@ import Signup from "./Signup";
 import Button from "../components/Button.jsx";
 import Select from "./Select"
 import Protected from "./AuthLayout";
+import RTEditor from "./RTEditor";
 
 export {
     Header,
@@ -21,6 +22,7 @@ export {
     Signup,
     Button,
     Select,
-    Protected
+    Protected,
+    RTEditor
 
 }
