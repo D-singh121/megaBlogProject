@@ -1,5 +1,5 @@
 // import React from 'react'
-import appwriteService from "../appWrite/databaseConfig.js"
+import appwriteDbService from "../appWrite/databaseConfig.js"
 import { Link } from 'react-router-dom'
 
 //****** below arguments are the variable of appwriteService  */
@@ -8,7 +8,7 @@ const PostCard = ({ $id, title, featuredImage }) => {
         <Link to={`/post/${$id}`}>
             <div className='w-full bg-gray-100 rounded-xl p-4'>
                 <div className='w-full justify-center mb-4'>
-                    <img src={appwriteService.getFilePreview(featuredImage)} alt={title} className='rounded-xl' />
+                    <img src={appwriteDbService.getFilePreview(featuredImage)} alt={title} className='rounded-xl' />
                 </div>
                 <h2 className='text-xl font-bold'>{title}</h2>
             </div>
