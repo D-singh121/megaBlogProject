@@ -10,6 +10,9 @@ import Button from "../components/Button.jsx";
 import Select from "./Select"
 import Protected from "./AuthLayout";
 import RTEditor from "./RTEditor";
+import PostCard from "./PostCard";
+import PostForm from "./postform/PostForm";
+
 
 export {
     Header,
@@ -23,6 +26,8 @@ export {
     Button,
     Select,
     Protected,
-    RTEditor
+    RTEditor,
+    PostCard,
+    PostForm
 
 }
