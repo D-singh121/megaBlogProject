@@ -66,6 +66,7 @@ const Login = () => {
                             label={<span style={{ color: 'black' }}>Email: </span>}
                             placeholder="Enter your email"
                             type="email"
+                            autoComplete="current-email" 
                             //*** yaha register ko hume spread karna hi padega iska syntax yahi hai , agar nahi karenge to kisi aur input me override ho jayega  */
                             {...register("email", {
                                 required: true,
@@ -78,6 +79,7 @@ const Login = () => {
                         <Input
                             
                             type="password"
+                            autoComplete="current-password" 
                             // label="Password: " 
                             label={<span style={{ color: 'black' }}>Password: </span>}
                             placeholder="Enter Password"

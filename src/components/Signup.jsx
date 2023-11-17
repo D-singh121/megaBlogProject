@@ -15,11 +15,12 @@ const Signup = () => {
     const { register, handleSubmit } = useForm();
 
 
-    const handleSignUp = async (data) => {
+    const handleSignUp = async(data) => {
         setError(""); //*** sabse pahle errors ko empty out kar denge  */
         try {
             //***** ab hume signup matlab ek accout create karna hai uske liye hum authService se createAccount() ,method ko use karenge  */
             const userData = await authService.createAccount(data);
+            console.log(userData);
             //****** ab agar data hamre pass aaya hai ya humara userdata ban gya hai to hum currentUser le lenge  */
             if (userData) {
                 const userData = await authService.getCurrentUser()
@@ -28,7 +29,8 @@ const Signup = () => {
                 navigate("/") //***** login ke baad navigate  */
             }
         } catch (error) {
-            setError(error.message)
+            console.log(error.message);
+            // setError(error.message)
         }
     }
 
@@ -55,6 +57,7 @@ const Signup = () => {
                 <form onSubmit={handleSubmit(handleSignUp)}>
                     <div className='space-y-5'>
                         <Input
+                            autoComplete="current-name" 
                             label={<span className=" text-blue-950">Full Name</span>}
                             placeholder="Enter your full name"
                             {...register("name", {
@@ -62,6 +65,7 @@ const Signup = () => {
                             })}
                         />
                         <Input
+                            autoComplete="current-email" 
                             label={<span className=" text-blue-950">Email</span>}
                             placeholder="Enter your email"
                             type="email"
@@ -76,6 +80,7 @@ const Signup = () => {
                         <Input
                             label={<span className=" text-blue-950">Password</span>}
                             type="password"
+                            autoComplete="current-password" 
                             placeholder="Enter your password"
                             {...register("password", {
                                 required: true,
@@ -85,10 +90,13 @@ const Signup = () => {
                                 }
                             })}
                         />
-                        <Button type="submit" className="w-full text-red-500 bg-yellow-400">
+                        <Button
+                            type="submit"
+                            value="handleSignUp"
+                            className="w-full text-white-500 hover:bg-blue-300 bg-blue-500">
                             Create Account
                         </Button>
-                    </div>
+                    </div>Failed to construct 'URFailed to construct 'URL': Invalid URLL': Invalid URL
                 </form>
             </div>
         </div>

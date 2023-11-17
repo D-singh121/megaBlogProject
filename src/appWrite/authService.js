@@ -60,8 +60,8 @@ export class AuthService {
             console.log("Appwrite service  ::  getCurrentUser :: error ", error);
             // throw error;
         }
-        // eslint-disable-next-line no-unreachable
         return null;
+        // eslint-disable-next-line no-unreachable
     }
 
 
