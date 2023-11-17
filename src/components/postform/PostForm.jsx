@@ -1,5 +1,9 @@
 import { useCallback, useEffect } from "react";
-import { Button, Select, Input, RTEditor } from "../index.js";
+// import { Button, Select, Input, RTEditor } from "../index.js";
+import Button from "../Button.jsx";
+import Input from "../Input.jsx";
+import Select from "../Select.jsx";
+import RTEditor from "../RTEditor.jsx";
 import { useForm } from "react-hook-form";
 import appwriteDbService from "../../appWrite/databaseConfig.js";
 import { useNavigate, } from "react-router-dom";

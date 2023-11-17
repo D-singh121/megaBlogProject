@@ -4,10 +4,18 @@ import App from './App.jsx'
 import './index.css'
 import { Provider } from 'react-redux'
 import myStore from './store/store.js'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import AuthLayout from "../src/components/AuthLayout.jsx"
-import Login from './components/Login.jsx'
-import { Home, AddPost, SignUp, EditPost, Post, AllPosts } from "./pages/index.jsx"
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+// import { AuthLayout, Login } from "./components/index.js";
+import AuthLayout from "./components/AuthLayout.jsx"
+import Login from "./components/Login.jsx"
+// import { Home, AddPost, SignUp, EditPost, Post, AllPosts } from "./pages/index.js"
+import AddPost from "./pages/AddPost.jsx"
+import Home from './pages/Home.jsx'
+import SignUp from './pages/SignUp.jsx'
+import EditPost from './pages/EditPost.jsx'
+import Post from './pages/Post.jsx'
+import AllPosts from './pages/AllPosts.jsx'
+
 
 const router = createBrowserRouter([
   {

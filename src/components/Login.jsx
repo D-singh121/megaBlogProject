@@ -1,10 +1,13 @@
+import Button from "./Button.jsx"
+import Input from "./Input.jsx"
+import Logo from "./Logo.jsx"
+import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { login as authStoreLogin } from "../store/authSlice.js"
-import { useState } from "react"
-import { Button, Input, Logo } from "./index.js"
 import { useDispatch } from "react-redux"
 import authService from "../appWrite/authService.js"
 import { useForm } from "react-hook-form"
+
 
 const Login = () => {
 
@@ -42,12 +45,12 @@ const Login = () => {
                         <Logo width="100%" />
                     </span>
                 </div>
-                <h2 className="text-center text-2xl font-bold leading-tight">Sign in to your account</h2>
+                <h2 className="text-center text-black text-2xl font-bold leading-tight">Sign in to your account</h2>
                 <p className="mt-2 text-center text-base text-black/60">
                     Don&apos;t have any account?&nbsp;
                     <Link
                         to="/signup"
-                        className="font-medium text-primary transition-all duration-200 hover:underline"
+                        className=" text-blue-600 font-medium text-primary transition-all duration-200 hover:underline"
                     >
                         Sign Up
                     </Link>
@@ -59,7 +62,8 @@ const Login = () => {
                 <form onSubmit={handleSubmit(handleLogin)} className='mt-8'>
                     <div className='space-y-5'>
                         <Input
-                            label="Email: "
+                            // label="Email: "
+                            label={<span style={{ color: 'black' }}>Email: </span>}
                             placeholder="Enter your email"
                             type="email"
                             //*** yaha register ko hume spread karna hi padega iska syntax yahi hai , agar nahi karenge to kisi aur input me override ho jayega  */
@@ -72,8 +76,10 @@ const Login = () => {
                             })}
                         />
                         <Input
+                            
                             type="password"
-                            label="Password: "
+                            // label="Password: " 
+                            label={<span style={{ color: 'black' }}>Password: </span>}
                             placeholder="Enter Password"
                             {...register("password", {
                                 required: true,
@@ -83,7 +89,7 @@ const Login = () => {
 
                         <Button
                             type="submit"
-                            className="w-full"
+                            className="w-full text-black font-bold "
                         >Sign in</Button>
                     </div>
                 </form>
@@ -92,4 +98,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Login;

@@ -1,4 +1,6 @@
-import { PostCard, Container } from "../components"
+// import { PostCard, Container } from "../components"
+import Container from "../components/container/Container"
+import PostCard from "../components/PostCard"
 import appwriteDbService from "../appWrite/databaseConfig"
 import { useState, useEffect } from "react"
 

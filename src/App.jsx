@@ -5,7 +5,9 @@ import authService from './appWrite/authService';
 //******* user ki state change karenge to store me request bhejne ke lie dispatch to lagega hi  */
 import { useDispatch } from 'react-redux';
 import { login, logout } from './store/authSlice';
-import { Header, Footer } from "./components/index.js"
+// import { Header, Footer } from "./components/index.js"
+import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
 import { Outlet } from 'react-router-dom';
 
 function App() {
@@ -25,14 +27,14 @@ function App() {
           }
         })
         .finally(() => setLoading(false))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []
   )
 
   //****** agar state loading me hai to hum null ya fir loading ka logo dikha sakte hai nahi to component render karwa denge  */
   return !loading ? (
     <div className=' min-h-screen flex flex-wrap content-center   justify-center text-white' >
-      <h1 className=' text-5xl'>Hi state is set </h1>
+      {/* <h1 className=' text-5xl'>Hi state is set </h1> */}
       <div className=' w-full block'>
         <Header />
         <main>
