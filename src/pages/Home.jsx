@@ -6,11 +6,12 @@ import appwriteDbService from '../appWrite/databaseConfig'
 
 
 function Home() {
-	const [posts, setPosts] = useState([]);
+	const [posts, setPosts] = useState([])
+
 	useEffect(() => {
 		appwriteDbService.getAllPost().then((posts) => {
 			if (posts) {
-				setPosts(posts)
+				setPosts(posts.documents)//*** document was missed here */
 			}
 		})
 
@@ -34,7 +35,7 @@ function Home() {
 	}
 
 
-	return (
+	return posts ? (
 		<div className=' py-8 w-full'>
 			<Container>
 				<div className=' flex flex-wrap'>
@@ -42,11 +43,11 @@ function Home() {
 						<div key={post.$id} className=' p-2 w-1/4'>
 							<PostCard {...post} />
 						</div>
-					))}
+					), [])}
 				</div>
 			</Container>
 		</div>
-	)
+	): null
 
 
 }

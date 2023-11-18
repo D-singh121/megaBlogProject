@@ -17,10 +17,10 @@ function PostForm({ post }) {
 		useForm({
 			defaultValues: {
 				//***** agar post me se value aarahi hai to use hum show kar denge nahi to empty set kar denge  */
-				title: post?.title || " ",
+				title: post?.title || "",
+				slug: post?.$id || "",
 				content: post?.content || "",
-				slug: post?.slug || " ",
-				status: post?.status || "",
+				status: post?.status || "active",
 			},
 		});
 

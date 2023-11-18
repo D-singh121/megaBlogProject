@@ -11,7 +11,7 @@ export class DbService {
     constructor() {
         this.client
             .setEndpoint(conf.appwriteUrl)
-            .setProject(conf.appwriteProjectId);
+            .setProject(conf.appwriteProjectId)
         this.databases = new Databases(this.client);
         this.bucket = new Storage(this.client);
     }
@@ -59,7 +59,7 @@ export class DbService {
                 conf.appwriteCollectionId,
                 slug
             )
-            return true;
+            return true
         } catch (error) {
             console.log("Appwrite service  ::  deletePost ::  error ", error)
             return false;
@@ -135,5 +135,5 @@ export class DbService {
     }
 }
 
-const appwriteDbService = new DbService
+const appwriteDbService = new DbService()
 export default appwriteDbService

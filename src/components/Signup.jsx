@@ -15,7 +15,8 @@ const Signup = () => {
     const { register, handleSubmit } = useForm();
 
 
-    const handleSignUp = async(data) => {
+    const handleSignUp = async (data) => {
+        console.log(data)
         setError(""); //*** sabse pahle errors ko empty out kar denge  */
         try {
             //***** ab hume signup matlab ek accout create karna hai uske liye hum authService se createAccount() ,method ko use karenge  */
@@ -23,16 +24,16 @@ const Signup = () => {
             console.log(userData);
             //****** ab agar data hamre pass aaya hai ya humara userdata ban gya hai to hum currentUser le lenge  */
             if (userData) {
-                const userData = await authService.getCurrentUser()
+                const userData = await authService.getCurrentUser();
                 //**** ab agar hume userdata yaha pe mila hai to fir hume store ko bhi update karna padega uske liye dispatch ki madad se login call kaewa denge  */
                 if (userData) dispatch(login(userData));
                 navigate("/") //***** login ke baad navigate  */
             }
         } catch (error) {
             console.log(error.message);
-            // setError(error.message)
+            setError(error.message)
         }
-    }
+    };
 
     return (
         <div className="flex items-center justify-center">
@@ -57,7 +58,7 @@ const Signup = () => {
                 <form onSubmit={handleSubmit(handleSignUp)}>
                     <div className='space-y-5'>
                         <Input
-                            autoComplete="current-name" 
+                            // autoComplete="current-name"
                             label={<span className=" text-blue-950">Full Name</span>}
                             placeholder="Enter your full name"
                             {...register("name", {
@@ -65,42 +66,41 @@ const Signup = () => {
                             })}
                         />
                         <Input
-                            autoComplete="current-email" 
+                            // autoComplete="current-email"
                             label={<span className=" text-blue-950">Email</span>}
                             placeholder="Enter your email"
                             type="email"
                             {...register("email", {
                                 required: true,
-                                validate: {
-                                    matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                                        "Email address must be a valid address",
-                                }
+                                // validate: {
+                                //     matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                                //         "Email address must be a valid address",
+                                // },
                             })}
                         />
                         <Input
                             label={<span className=" text-blue-950">Password</span>}
                             type="password"
-                            autoComplete="current-password" 
+                            // autoComplete="current-password"
                             placeholder="Enter your password"
                             {...register("password", {
                                 required: true,
-                                validate: {
-                                    matchPatern: (value) => /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/.test(value) ||
-                                        "Please Enter a valid Password "
-                                }
+                                // validate: {
+                                //     matchPatern: (value) => /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/.test(value) ||
+                                //         "Please Enter a valid Password "
+                                // }
                             })}
                         />
                         <Button
                             type="submit"
-                            value="handleSignUp"
                             className="w-full text-white-500 hover:bg-blue-300 bg-blue-500">
                             Create Account
                         </Button>
-                    </div>Failed to construct 'URFailed to construct 'URL': Invalid URLL': Invalid URL
+                    </div>
                 </form>
             </div>
         </div>
     )
 }
 
-export { Signup };
+export default Signup;

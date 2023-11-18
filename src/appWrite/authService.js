@@ -35,7 +35,7 @@ export class AuthService {
                 return userAccount;
             }
         } catch (error) {
-            //   console.log(error);
+            console.log(error);
             throw error;
         }
     }
@@ -53,12 +53,11 @@ export class AuthService {
     async getCurrentUser() {
         try {
             return await this.account.get();
-
         } catch (error) {
-            // console.log("Appwrite service  ::  getCurrentUser :: error ", error);
-            throw error;
+            console.log("Appwrite service  ::  getCurrentUser :: error ", error);
+            // throw error;
         }
-        // return null;
+        return null;
         // eslint-disable-next-line no-unreachable
     }
 
