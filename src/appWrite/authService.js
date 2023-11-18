@@ -10,10 +10,8 @@ export class AuthService {
     //***** authService(line:33) object call hone per humara constructor call hoga jiske ander hum account ki functionality rakhenge  */
     constructor() {
         this.client
-            .setEndpoint(conf.appWrite_url)
-            .setProject(conf.appWrite_ProjectId);
-
-        //******* ab jab humare paas client ki values aa gai hai to hum use account me bhej denge  */
+            .setEndpoint(conf.appwriteUrl)
+            .setProject(conf.appwriteProjectId);//******* ab jab humare paas client ki values aa gai hai to hum use account me bhej denge  */
         this.account = new Account(this.client);
     }
 
@@ -57,10 +55,10 @@ export class AuthService {
             return await this.account.get();
 
         } catch (error) {
-            console.log("Appwrite service  ::  getCurrentUser :: error ", error);
-            // throw error;
+            // console.log("Appwrite service  ::  getCurrentUser :: error ", error);
+            throw error;
         }
-        return null;
+        // return null;
         // eslint-disable-next-line no-unreachable
     }
 

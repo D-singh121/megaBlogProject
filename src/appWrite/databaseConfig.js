@@ -1,4 +1,4 @@
-/* eslint-disable no-useless-catch */
+
 import { Client, Databases, ID, Query, Storage } from "appwrite";
 import conf from "../conf/conf";
 
@@ -10,19 +10,18 @@ export class DbService {
 
     constructor() {
         this.client
-            .setEndpoint(conf.appWrite_url)
-            .setProject(conf.appWrite_ProjectId);
-
+            .setEndpoint(conf.appwriteUrl)
+            .setProject(conf.appwriteProjectId);
         this.databases = new Databases(this.client);
-        this.bucket = new Storage(this.client)
+        this.bucket = new Storage(this.client);
     }
 
     async createPost({ title, userId, content, slug, featuredImage, status }) {
         try {
             //*******databases.createDocument('[DATABASE_ID]', '[COLLECTION_ID]', '[DOCUMENT_ID]', {}); */
             return await this.databases.createDocument(
-                conf.appWrite_DatabaseId,
-                conf.appWrite_CollactionId,
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
                 slug,
                 {
                     title, content, featuredImage, status, userId
@@ -36,8 +35,8 @@ export class DbService {
     async updatePost(slug, { title, content, featuredImage, status }) {
         try {
             return await this.databases.updateDocument(
-                conf.appWrite_DatabaseId,
-                conf.appWrite_CollactionId,
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
                 slug,
                 {
                     title,
@@ -56,8 +55,8 @@ export class DbService {
     async deletePost(slug) {
         try {
             await this.databases.deleteDocument(
-                conf.appWrite_DatabaseId,
-                conf.appWrite_CollactionId,
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
                 slug
             )
             return true;
@@ -67,29 +66,11 @@ export class DbService {
         }
     }
 
-    async getAllPost(queries) {
-        try {
-            return await this.databases.listDocuments(
-                conf.appWrite_DatabaseId,
-                conf.appWrite_CollactionId,
-                queries,
-                [
-                    Query.equal("status", "active")
-                ]
-            )
-
-        } catch (error) {
-            console.log("Appwrite service  ::  getAllPost ::  error ", error);
-            return false
-
-        }
-    }
-
     async getPost(slug) {
         try {
-            return await this.databases.listDocument(
-                conf.appWrite_DatabaseId,
-                conf.appWrite_CollactionId,
+            return await this.databases.getDocument(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
                 slug
             )
         } catch (error) {
@@ -98,12 +79,28 @@ export class DbService {
         }
     }
 
+    async getAllPost(queries = [
+        Query.equal("status", "active")
+    ]) {
+        try {
+            return await this.databases.listDocuments(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
+                queries,
+            )
+
+        } catch (error) {
+            console.log("Appwrite service  ::  getAllPost ::  error ", error);
+            return false
+        }
+    }
+
     //********* upload files */
 
     async uploadFile(file) {
         try {
-            await this.bucket.createFile(
-                conf.appWrite_BucketId,
+            return await this.bucket.createFile(
+                conf.appwriteBucketId,
                 ID.unique(),
                 file
             )
@@ -116,8 +113,8 @@ export class DbService {
     //********** createFile method ko call karne ke baad hume fileId mil jayegi aur file delete hone ke baad hum status true kar denge */
     async deleteFile(fileId) {
         try {
-            await this.Storage.deleteFile(
-                conf.appWrite_BucketId,
+            await this.bucket.deleteFile(
+                conf.appwriteBucketId,
                 fileId
             )
             return true;
@@ -129,15 +126,12 @@ export class DbService {
 
     //****** here no need to call async-await because its already very fast  */
     async getFilePreview(fileId) {
-        try {
-            return await this.bucket.getFilePreview(
-                conf.appWrite_BucketId,
-                fileId
-            )
-        } catch (error) {
-            console.log("Appwrite service  ::  uploadfile ::  error ", error);
-            return false;
-        }
+
+        return this.bucket.getFilePreview(
+            conf.appwriteBucketId,
+            fileId
+        )
+
     }
 }
 
